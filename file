@@ -1,0 +1,29 @@
+sudo apt-get install filebeat
+sudo nano /etc/filebeat/filebeat.yml
+sudo systemctl start filebeat
+sudo systemctl enable filebeat
+sudo systemctl status filebeat
+sudo filebeat modules enable system
+sudo filebeat modules enable logstash
+sudo filebeat modules enable kibana
+filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
+
+start filebeat service;
+sudo service filebeat start
+#check whether elasticsearch is receiveing datalog form filebeat
+
+curl -X GET "http://localhost:9200/_cat/indices?v"
+
+#access kubana web internace
+http:localhost:5601
+
+sudo service filebeat stop
+sudo systemctl stop filebeat
+
+comment 
+#output.elasticsearch
+ #array of the hosts to connect to
+ #hosts: [localhost:9200]
+uncomment
+output.logstash:
+hosts: ["localhost:5044"]
