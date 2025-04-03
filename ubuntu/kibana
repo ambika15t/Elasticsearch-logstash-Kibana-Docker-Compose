@@ -1,0 +1,16 @@
+https://www.elastic.co/guide/en/kibana/8.17/deb.html#deb-repo
+
+
+#wget https://artifacts.elastic.co/downloads/kibana/kibana-8.17.4-amd64.deb
+#shasum -a 512 kibana-8.17.4-amd64.deb 
+#sudo dpkg -i kibana-8.17.4-amd64.deb
+
+sudo apt-get update && sudo apt-get install kibana
+
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable kibana.service
+
+sudo systemctl start kibana.service
+sudo systemctl stop kibana.service
+
+http://13.201.57.229:5601
